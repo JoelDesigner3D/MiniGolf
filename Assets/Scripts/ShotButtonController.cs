@@ -50,6 +50,7 @@ public class ShotButtonController : MonoBehaviour
             { 
                 canShot = false;
                 ShotTheBall();
+                SFXController.Instance.PlaySoundById(0);
                 guide.SetActive(false);
             }
         }
