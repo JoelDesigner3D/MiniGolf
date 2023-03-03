@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Fall
   - Win
+  - Border
   layers:
   - Default
   - TransparentFX

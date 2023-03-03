@@ -14,7 +14,7 @@ public class ShotButtonController : MonoBehaviour
     bool powerActivated = false;
     bool canShot = true;
     bool canCheckSpeed = false;
-    int nbShots = 0;
+    public int nbShots = 0;
 
     [SerializeField] int speed = 2000;
 
@@ -59,12 +59,14 @@ public class ShotButtonController : MonoBehaviour
 
     public void ActivatePowerBar()
     {
+        //SFXController.Instance.PlaySoundById(4);
         powerActivated = true;
         StartCoroutine("AnimatePowerBar");
     }
 
     public void ShotTheBall()
     {
+        SFXController.Instance.PlaySoundById(0);
         powerActivated = false;
         nbShots++;
         StopAllCoroutines();

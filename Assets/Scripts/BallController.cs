@@ -2,9 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class BallController : MonoBehaviour
 {
+
+    [SerializeField] TextMeshProUGUI strokesCountText;
+    [SerializeField] ShotButtonController shotButtonController;
+
 
     private void OnTriggerEnter(Collider other)
     {
@@ -22,6 +27,25 @@ public class BallController : MonoBehaviour
 
         if (other.gameObject.tag == "Win")
         {
+            int strokes = shotButtonController.nbShots;
+
+            int score = (10 - strokes) * 100;
+            if (score < 0)
+            {
+                score = 0;
+            }
+            GameManager.Instance.score += score;
+
+            if (strokes == 1)
+            {
+                strokesCountText.text = "Terminé en 1 coup, bravo !";
+            }
+            else
+            {
+                strokesCountText.text = "Terminé en " + strokes + " coups !";
+            }
+            
+
             SFXController.Instance.PlaySoundById(1);
 
             StartCoroutine("LoadLevelAfterSeconds");            
@@ -34,14 +58,16 @@ public class BallController : MonoBehaviour
 
         int nextLevel = SceneManager.GetActiveScene().buildIndex + 1;
 
-        //if (nextLevel < 10)
-        //{
-        //    SceneManager.LoadScene(nextLevel);
-       // }
-       // else
-       // {
+        //int scenesCount = SceneManager.sceneCount;
+
+        if (nextLevel < 3)
+        {
+            SceneManager.LoadScene(nextLevel);
+        }
+        else
+        {
             SceneManager.LoadScene(0);
-       // }
+        }
     }
 
 }
