@@ -31,6 +31,7 @@ public class SFXController : MonoBehaviour
         }
     }
 
+
     public void PlaySoundById(int id)
     {
         audioSource.PlayOneShot(sfx[id]);

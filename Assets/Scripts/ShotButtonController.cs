@@ -14,6 +14,7 @@ public class ShotButtonController : MonoBehaviour
     bool powerActivated = false;
     bool canShot = true;
     bool canCheckSpeed = false;
+
     public int nbShots = 0;
 
     [SerializeField] int speed = 2000;

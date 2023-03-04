@@ -9,6 +9,7 @@ public class BallController : MonoBehaviour
 
     [SerializeField] TextMeshProUGUI strokesCountText;
     [SerializeField] ShotButtonController shotButtonController;
+    [SerializeField] GameManager gameManager;
 
 
     private void OnTriggerEnter(Collider other)
@@ -48,26 +49,18 @@ public class BallController : MonoBehaviour
 
             SFXController.Instance.PlaySoundById(1);
 
-            StartCoroutine("LoadLevelAfterSeconds");            
+            StartCoroutine("LoadLevelMenuAfterSeconds", gameManager);            
         }
     }
 
-    IEnumerator LoadLevelAfterSeconds()
+
+    IEnumerator LoadLevelMenuAfterSeconds(GameManager gameManager)
     {
         yield return new WaitForSeconds(3);
 
-        int nextLevel = SceneManager.GetActiveScene().buildIndex + 1;
+        gameManager.DisplayLevelMenu();
 
-        //int scenesCount = SceneManager.sceneCount;
-
-        if (nextLevel < 3)
-        {
-            SceneManager.LoadScene(nextLevel);
-        }
-        else
-        {
-            SceneManager.LoadScene(0);
-        }
     }
+
 
 }

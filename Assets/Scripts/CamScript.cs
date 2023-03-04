@@ -9,8 +9,10 @@ public class CamScript : MonoBehaviour
     public GameObject ball;
     public float distance = 3.5f;
 
-    private float posX = 0.5f;
-    private float posY = 0.5f;
+    public float posVerticale = 2f;
+
+    public float posX = 0.5f;
+    public float posY = 0.5f;
     private Quaternion rotation;
     private Touch touch;   // Ecran tactile
 
@@ -25,27 +27,30 @@ public class CamScript : MonoBehaviour
     void LateUpdate()
     {
 
-#if UNITY_EDITOR || UNITY_STANDALONE
+// si on est sur PC
+
+    #if UNITY_EDITOR || UNITY_STANDALONE
 
         posX += Input.GetAxis("Mouse X") * 3;
 
-#endif
+    #endif
 
-#if UNITY_ANDROID || UNITY_IPHONE
+       // si on est sur mobile
+    #if UNITY_ANDROID || UNITY_IPHONE
 
         if(Input.touches.Length == 1)
         {
             x += Input.getTouch(0).deltaPosition.x * 0.1f;
         }
 
-#endif
+    #endif 
 
         if (!EventSystem.current.IsPointerOverGameObject())
         {
             rotation = Quaternion.Euler(posY, posX, 0f);
         }
 
-        Vector3 position = rotation * new Vector3(0f, ball.transform.position.y / 3, -distance) + ball.transform.position;
+        Vector3 position = rotation * new Vector3(0f, ball.transform.position.y / 3 + posVerticale, -distance) + ball.transform.position;
 
         transform.position = position;
         transform.rotation = rotation;

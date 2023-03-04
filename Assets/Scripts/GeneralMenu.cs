@@ -6,6 +6,9 @@ using UnityEngine.SceneManagement;
 public class GeneralMenu : MonoBehaviour
 {
 
+    [SerializeField] AudioSource music;
+
+
     public void LaunchGame()
     {
         SceneManager.LoadScene(1);
