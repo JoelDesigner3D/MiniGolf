@@ -7,7 +7,13 @@ public class EndLevelManager : MonoBehaviour
 {
 
     [SerializeField] TextMeshProUGUI scoreField;
+    [SerializeField] Canvas endLevelMenu;
 
+    void Start()
+    {
+        Debug.Log("=========  New Level ==========");
+        endLevelMenu.enabled = false;
+    }
 
     public void SetScore(int score)
     {

@@ -30,12 +30,12 @@ public class BallController : MonoBehaviour
         {
             int strokes = shotButtonController.nbShots;
 
-            int score = (10 - strokes) * 100;
-            if (score < 0)
+            int levelScore = (10 - strokes);
+            if (levelScore < 0)
             {
-                score = 0;
+                levelScore = 0;
             }
-            GameManager.Instance.score += score;
+            GameManager.Instance.score += levelScore;
 
             if (strokes == 1)
             {
