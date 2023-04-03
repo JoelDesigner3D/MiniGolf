@@ -2,7 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+#if UNITY_EDITOR || UNITY_STANDALONE
 using Unity.UI;
+#endif
 
 public class ShotButtonController : MonoBehaviour
 {

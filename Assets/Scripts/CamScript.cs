@@ -40,7 +40,7 @@ public class CamScript : MonoBehaviour
 
         if(Input.touches.Length == 1)
         {
-            x += Input.getTouch(0).deltaPosition.x * 0.1f;
+            posX += Input.GetTouch(0).deltaPosition.x * 0.1f;
         }
 
     #endif 
